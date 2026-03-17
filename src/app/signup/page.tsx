@@ -21,6 +21,7 @@ export default function SignUpForm() {
         if (error) {
             console.log(error)
         } else {
+            // TODO: show error to user instead of console.log
             console.log(data)
             router.push('/')
         }
