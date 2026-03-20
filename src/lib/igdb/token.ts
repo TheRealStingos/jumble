@@ -15,7 +15,7 @@ const supabase = createClient(
 export default async function getValidToken() {
     
     const {data, error} = await supabase
-        .from ("twitchToken")
+        .from ("twitch_token")
         .select('token, expires_at')
         .maybeSingle()
 
@@ -42,7 +42,7 @@ export default async function getValidToken() {
         const twitchToken = twitchData.access_token
 
         const {error: upsertError} = await supabase
-            .from ("twitchToken")
+            .from ("twitch_token")
             .upsert({
                 id: 1, // Only ever need 1 row in this table, thus 1 is hardcoded
                 token: twitchToken,

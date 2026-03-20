@@ -1,3 +1,4 @@
+import { IGDBGame } from "@/lib/igdb/igdbTypes"
 import getValidToken from "@/lib/igdb/token"
 
 if (!process.env.TWITCH_CLIENT_ID) throw new Error("Missing TWITCH_CLIENT_ID")
@@ -18,17 +19,26 @@ export async function GET(request: Request){
             Authorization: `Bearer ${token}`,
             "Content-Type": "text/plain"
         },
-        body: `search "${query}"; fields name, cover;`
+        body: `search "${query}"; fields name, cover.image_id, first_release_date;`
         })
 
         if(!igdbResponse.ok) {
         throw new Error(`Response Status: ${igdbResponse.status}`)
         }
 
-   
         const igdbSearchData = await igdbResponse.json()
+        
+        const normalized = igdbSearchData.map((game: IGDBGame) =>({
+            id: game.id,
+            title: game.name,
+            coverUrl: game.cover?.image_id 
+                ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`
+                : null,
+            releaseYear: new Date(game.first_release_date * 1000).getFullYear(),
+            type: "game"
+        }))
 
-        return Response.json(igdbSearchData)
+       return Response.json(normalized)
 
     } catch {
         return Response.json({ error: "Something went wrong"}, { status:500 })

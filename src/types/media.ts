@@ -1,7 +1,7 @@
 export type MediaType = "game" | "movie" | "music" | "book" | "tv"
 
 export interface MediaResult {
-    id: string;
+    id: number;
     title: string;
     type: MediaType;
     coverUrl: string;
