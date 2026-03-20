@@ -46,6 +46,7 @@ export default function MediaSearch() {
         <input type="text" id="search" name="search" placeholder="search" value={query} onChange={(e) => setQuery(e.target.value)}></input>
         {error && <p>{error}</p>}
         {loading &&<p>Loading...</p>}
+        {debouncedQuery && results.length === 0 && !loading && <p>No results found</p>}
         {results.map((result) => (
             <MediaCard key={result.id} result={result} />
         ))}
