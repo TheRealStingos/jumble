@@ -1,4 +1,4 @@
-import getValidToken from "@/app/lib/igdb/token"
+import getValidToken from "@/lib/igdb/token"
 
 if (!process.env.TWITCH_CLIENT_ID) throw new Error("Missing TWITCH_CLIENT_ID")
 const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID
