@@ -1,11 +1,12 @@
-import type { MediaResult } from "@/types/media";
+import { MediaResult } from "@/types/media";
 import Image from "next/image";
 
-interface MediaCardProps {
+interface MediaDetailLayoutProps {
     result: MediaResult
+    children: React.ReactNode
 }
 
-export default function MediaCard({ result }: MediaCardProps) {
+export default function MediaDetailLayout({ result, children }: MediaDetailLayoutProps){
     return (
         <div>
             <h3>{result.title}</h3>
@@ -16,7 +17,9 @@ export default function MediaCard({ result }: MediaCardProps) {
             height={120}
             />}
             <p>{result.type}</p>
-            <p>{result.releaseYear}</p>
+            <p>{result.releaseDate}</p>
+            {children}
+            
         </div>
     )
 }

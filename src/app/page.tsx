@@ -1,4 +1,4 @@
-import MediaSearch from "@/components/MediaSearch";
+import MediaSearch from "@/components/search/MediaSearch";
 import Image from "next/image";
 
 export default function Home() {

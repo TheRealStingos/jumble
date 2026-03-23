@@ -19,7 +19,7 @@ export async function GET(request: Request){
             Authorization: `Bearer ${token}`,
             "Content-Type": "text/plain"
         },
-        body: `search "${query}"; fields name, cover.image_id, first_release_date;`
+        body: `search "${query}"; fields name, cover.image_id, first_release_date; where version_parent = null;`
         })
 
         if(!igdbResponse.ok) {
@@ -34,7 +34,7 @@ export async function GET(request: Request){
             coverUrl: game.cover?.image_id 
                 ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`
                 : null,
-            releaseYear: new Date(game.first_release_date * 1000).getFullYear(),
+            releaseDate: new Date(game.first_release_date * 1000),
             type: "game"
         }))
 
