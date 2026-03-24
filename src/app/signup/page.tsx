@@ -23,6 +23,7 @@ export default function SignUpForm() {
         } else {
             // TODO: show error to user instead of console.log
             console.log(data)
+            router.refresh()
             router.push('/')
         }
     }   

@@ -3,12 +3,12 @@ CREATE TYPE media_type AS ENUM ('game', 'movie', 'music', 'book', 'tv');
 CREATE TABLE media_log (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid NOT NULL REFERENCES auth.users(id),
-  media_id text NOT NULL,
+  media_id text NOT NULL, -- Stringified external api ids
   type media_type NOT NULL,
   title text NOT NULL,
   release_date timestamptz,
   cover text,
-  user_rating numeric CHECK (user_rating BETWEEN 0.5 AND 5),
+  user_rating numeric CHECK (user_rating BETWEEN 0.5 AND 5), -- Maps to half - 5 stars in frontend
   user_review text,
   is_complete boolean DEFAULT false,
   logged_at timestamptz DEFAULT now(),

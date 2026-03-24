@@ -25,7 +25,8 @@ export default async function fetchGameById(id: string) {
             }
     
             const gameData = await igdbResponse.json()
-    
+
+            // IGDB always returns an array, even if searching directly by ID. This grabs the first and only item from that array.
             const game: IGDBGameDetail = gameData[0]
     
             const normalized = {
