@@ -1,5 +1,6 @@
 import { MediaResult } from "@/types/media";
 import Image from "next/image";
+import LogMedia from "../LogMedia";
 
 interface MediaDetailLayoutProps {
     result: MediaResult
@@ -19,7 +20,7 @@ export default function MediaDetailLayout({ result, children }: MediaDetailLayou
             <p>{result.type}</p>
             <p>{result.releaseDate}</p>
             {children}
-            
+            <LogMedia result={result}></LogMedia>
         </div>
     )
 }
