@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jumble
+
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#jumble)
+
+An all-in-one social media logging app. Log, rate, and review your favorite video games, music, movies, television shows, books, comics, and manga.
+
+Still under construction, check back soon.
+
+For Architecture choices please see architecture.md
+
+## Features
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#features)
+- User Account
+- Search for games
+- Log, rate, and review video games
+
+### Planned
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#planned)
+- Other media types (Movies, Music, Television, Books)
+- Friends and friend activity
+- Curated and collaborative lists
+- Upcoming release tracking
+- Media consumption scheduling with calendar integration
+- Backlog management
+
+## Tech Stack
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#tech-stack)
+- Next.js (TypeScript)
+- Supabase (PostgreSQL + Auth)
+- Tailwind CSS
+- Vercel (hosting)
 
 ## Getting Started
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#getting-started)
 
-First, run the development server:
+### Prerequisites
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#prerequisites)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js
+- A Supabase account
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#installation)
+1. Clone the repo
+2. Run `npm install`
+3. Add your environment variables to `.env.local`
+4. Run `npm run dev`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
+[](https://github.com/TheRealStingos/jumble/blob/main/README.md#environment-variables)
+NEXT_PUBLIC_SUPABASE_URL=
+Found in your Supabase dashboard under Project Settings → API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+Found in your Supabase dashboard under Project Settings → API → publishable key
 
-## Learn More
+SUPABASE_SECRET_KEY=
+Found in your Supabase dashboard under Project Settings → API → secret key
+Never expose this publicly or prefix with NEXT_PUBLIC_
 
-To learn more about Next.js, take a look at the following resources:
+TWITCH_CLIENT_ID=
+Found in your Twitch Developers Console. Register Application → Client ID
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TWITCH_CLIENT_SECRET=
+Found in your Twitch Developers Console. Register Application → New Secret → Secret Key
