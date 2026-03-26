@@ -27,12 +27,19 @@ export default async function RootLayout({
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
+  const { data: profile } = user ? await supabase
+  .from("profiles")
+  .select("username, avatar")
+  .eq("id", user.id)
+  .single() : {data: null }
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar isLoggedIn={!!user} />
+        {/* Pass user props to navbar */}
+        <Navbar isLoggedIn={!!user} username={profile?.username} avatar={profile?.avatar} />
         {children}
       </body>
     </html>

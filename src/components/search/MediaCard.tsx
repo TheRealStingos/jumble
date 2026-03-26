@@ -9,7 +9,7 @@ interface MediaCardProps {
 export default function MediaCard({ result }: MediaCardProps) {
     return (
         <div>
-            <Link href={`/${result.type}/${result.id}`}>
+            <Link href={`/media/${result.type}/${result.id}`}>
                 <h3>{result.title}</h3>
                 {result.coverUrl && <Image 
                 src = {result.coverUrl}
