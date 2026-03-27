@@ -1,5 +1,5 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from "@supabase/ssr"
+import { NextResponse, type NextRequest } from "next/server"
 
 export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
@@ -25,20 +25,21 @@ export async function proxy(request: NextRequest) {
     }
   )
 
-  const { data: { user }} = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  const protectedRoutes = ['']
+  const protectedRoutes = [""]
 
   const isProtected = protectedRoutes.includes(request.nextUrl.pathname)
 
-  if ( isProtected && !user ) {
-   return NextResponse.redirect(new URL("/signin", request.url))
+  if (isProtected && !user) {
+    return NextResponse.redirect(new URL("/signin", request.url))
   }
-
 
   return supabaseResponse
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 }

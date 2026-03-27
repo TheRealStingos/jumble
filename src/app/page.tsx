@@ -1,5 +1,5 @@
-import MediaSearch from "@/components/search/MediaSearch";
-import Image from "next/image";
+import MediaSearch from "@/components/search/MediaSearch"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -63,5 +63,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }

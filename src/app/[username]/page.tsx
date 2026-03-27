@@ -1,8 +1,11 @@
 import { createClient } from "@/utils/supabase/server"
 import Link from "next/link"
 
-
-export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
+export default async function ProfilePage({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}) {
   const { username } = await params
 
   const supabase = await createClient()
@@ -13,20 +16,22 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
     .eq("username", username)
     .single()
 
-    if (error) {
-        console.log(error)
-        return
-    }
+  if (error) {
+    console.log(error)
+    return
+  }
 
-
-
-    return (
-        <div>
-            <img src={data.avatar ?? ""} />
-            <p>{data.username}</p>
-            <p>{data.bio}</p>
-            <Link href={`/${username}/log`}><p>Media Log</p></Link> 
-            <Link href={`/${username}/settings`}><p>profile settings</p></Link>
-        </div>
-    )
+  return (
+    <div>
+      <img src={data.avatar ?? ""} />
+      <p>{data.username}</p>
+      <p>{data.bio}</p>
+      <Link href={`/${username}/log`}>
+        <p>Media Log</p>
+      </Link>
+      <Link href={`/${username}/settings`}>
+        <p>profile settings</p>
+      </Link>
+    </div>
+  )
 }
