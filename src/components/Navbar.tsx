@@ -3,6 +3,16 @@
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { createClient } from "@/utils/supabase/client"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
+import MediaSearch from "./search/MediaSearch"
+import Image from "next/image"
 
 export default function Navbar({
   isLoggedIn,
@@ -28,17 +38,44 @@ export default function Navbar({
   }
 
   return (
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          <Link href={`/${username}`}>
-            <img src={avatar ?? "profile"} />
-          </Link>
-          <button onClick={handleClick}>Sign Out</button>
-        </div>
-      ) : (
-        <Link href="/signin">Sign In</Link>
-      )}
+    <nav className="flex justify-between items-center bg-card px-8">
+      <Image
+        src={"/jumble_logo_puzzle.svg"}
+        alt="jumble logo"
+        width={300}
+        height={200}
+      />
+      <div className="flex">
+        <MediaSearch />
+        {isLoggedIn ? (
+          <div className="pl-8">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar className="h-12 w-12">
+                  <AvatarImage src={avatar ?? "profile"} />
+                  <AvatarFallback></AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onSelect={() => router.push(`/${username}`)}>
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onSelect={() => router.push(`/${username}/log`)}
+                >
+                  Log
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <button onClick={handleClick}>Sign Out</button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        ) : (
+          <Link href="/signin">Sign In</Link>
+        )}
+      </div>
     </nav>
   )
 }

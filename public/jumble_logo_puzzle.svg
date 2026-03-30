@@ -1,0 +1,18 @@
+<svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Puzzle piece shadow -->
+  <path d="M 44 54 L 94 54 L 94 69 C 104 69 104 89 94 89 L 94 104 L 72 104 C 72 94 56 94 56 104 L 44 104 Z" fill="#1e2a4a" style="fill:rgb(30, 42, 74);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Puzzle piece main -->
+  <path d="M 40 50 L 90 50 L 90 65 C 100 65 100 85 90 85 L 90 100 L 68 100 C 68 90 52 90 52 100 L 40 100 Z" fill="#D85A30" stroke="#1e2a4a" stroke-width="2" stroke-linejoin="round" style="fill:rgb(216, 90, 48);stroke:rgb(30, 42, 74);color:rgb(251, 251, 254);stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- J letterform -->
+  <text x="62" y="76" text-anchor="middle" dominant-baseline="central" font-family="Poppins, sans-serif" font-weight="800" font-size="28" fill="#fff" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Poppins, sans-serif;font-size:28px;font-weight:800;text-anchor:middle;dominant-baseline:central">J</text>
+
+  <!-- Wordmark shadow -->
+  <text x="108" y="102" text-anchor="start" dominant-baseline="central" font-family="Poppins, sans-serif" font-weight="800" font-size="48" fill="#1e2a4a" letter-spacing="-2" style="fill:rgb(30, 42, 74);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Poppins, sans-serif;font-size:48px;font-weight:800;text-anchor:start;dominant-baseline:central">jumble</text>
+  <!-- Wordmark main -->
+  <text x="104" y="98" text-anchor="start" dominant-baseline="central" font-family="Poppins, sans-serif" font-weight="800" font-size="48" fill="#1e293b" letter-spacing="-2" style="fill:rgb(30, 41, 59);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Poppins, sans-serif;font-size:48px;font-weight:800;text-anchor:start;dominant-baseline:central">
+    <tspan fill="#D85A30" style="fill:rgb(216, 90, 48);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Poppins, sans-serif;font-size:48px;font-weight:800;text-anchor:start;dominant-baseline:central">j</tspan>umble
+  </text>
+
+  <!-- Tagline -->
+  <text x="105" y="136" text-anchor="start" font-family="Poppins, sans-serif" font-weight="500" font-size="13" fill="#6b7a99" letter-spacing="3" style="fill:rgb(107, 122, 153);stroke:none;color:rgb(251, 251, 254);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Poppins, sans-serif;font-size:13px;font-weight:500;text-anchor:start;dominant-baseline:auto">YOUR MEDIA, LOGGED</text>
+</svg>

@@ -15,6 +15,7 @@ export default function MediaSearch() {
 
   useEffect(() => {
     if (!debouncedQuery || debouncedQuery === "") {
+      setResults([])
       return
     }
 
@@ -40,9 +41,15 @@ export default function MediaSearch() {
     search()
   }, [debouncedQuery])
 
+  function handleResultClick() {
+    setQuery("")
+    setResults([])
+  }
+
   return (
-    <div>
+    <div className="mt-2 relative rounded-lg">
       <input
+        className="bg-background focus:bg-card rounded-lg px-3 py-2"
         type="text"
         id="search"
         name="search"
@@ -52,12 +59,20 @@ export default function MediaSearch() {
       ></input>
       {error && <p>{error}</p>}
       {loading && <p>Loading...</p>}
-      {debouncedQuery && results.length === 0 && !loading && (
-        <p>No results found</p>
+      {query && results.length === 0 && !loading && <p>No results found</p>}
+      {(loading || error || results.length > 0) && (
+        <div className="absolute z-50 top-8 w-full bg-card border border-border shadow-md rounded-lg">
+          {loading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {results.map((result) => (
+            <MediaCard
+              key={result.id}
+              result={result}
+              onSelect={handleResultClick}
+            />
+          ))}
+        </div>
       )}
-      {results.map((result) => (
-        <MediaCard key={result.id} result={result} />
-      ))}
     </div>
   )
 }
