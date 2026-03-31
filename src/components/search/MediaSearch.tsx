@@ -47,9 +47,9 @@ export default function MediaSearch() {
   }
 
   return (
-    <div className="mt-2 relative rounded-lg">
+    <div className="mt-2 relative">
       <input
-        className="bg-background focus:bg-card rounded-lg px-3 py-2"
+        className="bg-background focus:bg-muted px-3 py-2 rounded-xl"
         type="text"
         id="search"
         name="search"

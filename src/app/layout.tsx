@@ -47,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}
+        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased flex flex-col min-h-screen`}
       >
         {/* Pass user props to navbar */}
         <Navbar
@@ -55,7 +55,7 @@ export default async function RootLayout({
           username={profile?.username}
           avatar={profile?.avatar}
         />
-        {children}
+        <main className="flex flex-1">{children}</main>
       </body>
     </html>
   )

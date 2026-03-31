@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { createClient } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
 export default function SignUpForm() {
   const [email, setEmail] = useState("")
@@ -41,37 +42,41 @@ export default function SignUpForm() {
   }
 
   return (
-    <section>
-      <form>
+    <section className="flex flex-col items-center justify-center flex-1">
+      <form className="flex flex-col bg-card rounded-lg p-3">
+        <label htmlFor="signup-username">Username:</label>
+
         <input
           type="text"
           id="signup-username"
           name="username"
+          placeholder="MediaManiac"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label htmlFor="signup-username">Username</label>
 
+        <label htmlFor="signup-email">Email Address:</label>
         <input
           type="email"
           id="signup-email"
           name="email"
+          placeholder="example@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="signup-email">Email Address</label>
 
+        <label htmlFor="signup-password">Password:</label>
         <input
-          className="bg-blue-400"
           type="password"
           id="signup-password"
           name="password"
+          placeholder="******"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label htmlFor="signup-password">Password</label>
-
-        <button onClick={handleSubmit}>Sign Up</button>
+        <div className="flex justify-center">
+          <Button onClick={handleSubmit}>Sign Up</Button>
+        </div>
       </form>
     </section>
   )

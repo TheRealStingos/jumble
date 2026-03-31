@@ -73,7 +73,12 @@ export default function Navbar({
             </DropdownMenu>
           </div>
         ) : (
-          <Link href="/signin">Sign In</Link>
+          <Link
+            href="/signin"
+            className="bg-primary flex items-center rounded-lg p-3 ml-6 hover:bg-primary/90 active:scale-95 text-primary-foreground shadow-md font-semibold"
+          >
+            Sign In
+          </Link>
         )}
       </div>
     </nav>

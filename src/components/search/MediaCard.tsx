@@ -17,7 +17,9 @@ export default function MediaCard({ result, onSelect }: MediaCardProps) {
         onClick={onSelect}
         className="flex flex-col items-center"
       >
-        <h3 className="text-lg font-semibold text-center">{result.title}</h3>
+        <h3 className="text-lg font-semibold text-center truncate w-full px-2">
+          {result.title}
+        </h3>
         {result.coverUrl && (
           <Image
             src={result.coverUrl}

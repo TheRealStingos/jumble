@@ -1,8 +1,13 @@
 export default function Home() {
   return (
-    <div>
-      <h1>Log your media</h1>
-      <h1>All in one place</h1>
-    </div>
+    <section className="flex flex-col items-center justify-center my-auto border-amber-900 border h-screen">
+      <div>
+        <p className="">All your media</p>
+        <p className="">In one place</p>
+      </div>
+      <button className="bg-card p-2 rounded-lg shadow-md hover:bg-primary active:scale-90">
+        Get Started!
+      </button>
+    </section>
   )
 }
