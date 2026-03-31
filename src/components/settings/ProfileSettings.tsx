@@ -2,7 +2,9 @@
 
 import { createClient } from "@/utils/supabase/client"
 import imageCompression from "browser-image-compression"
+import Image from "next/image"
 import { useState } from "react"
+import { Button } from "../ui/button"
 
 export default function ProfileSettings({
   username,
@@ -13,7 +15,8 @@ export default function ProfileSettings({
   bio: string | null
   avatar: string | null
 }) {
-  const [newBio, setNewBio] = useState(bio)
+  const oldBio = bio
+  const [newBio, setNewBio] = useState("")
   const [newAvatar, setNewAvatar] = useState(avatar)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
 
@@ -79,21 +82,27 @@ export default function ProfileSettings({
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        name="new-bio"
-        id="new-bio"
-        placeholder="Tell us about yourself!"
-        value={newBio ?? ""}
-        onChange={(e) => setNewBio(e.target.value)}
-      />
-      <label htmlFor="new-bio">Bio:</label>
+    <section className="flex items-center justify-center gap-12 flex-1 h-full w-full">
+      <div className="flex bg-card rounded-lg">
+        <form className="flex flex-col p-3">
+          <label htmlFor="new-bio">Bio:</label>
+          <textarea
+            name="new-bio"
+            id="new-bio"
+            placeholder={oldBio ?? "Tell us about yourself!"}
+            value={newBio ?? ""}
+            onChange={(e) => setNewBio(e.target.value)}
+            className="min-h-35"
+          />
+        </form>
+      </div>
 
-      <img src={newAvatar ?? ""} />
+      <div className="rounded-lg bg-card flex flex-col p-6">
+        <Image src={newAvatar ?? ""} alt="Avatar" width={300} height={300} />
 
-      <input type="file" accept="image/*" onChange={handleAvatarChange} />
-      <button onClick={handleSubmit}>Save?</button>
-    </div>
+        <input type="file" accept="image/*" onChange={handleAvatarChange} />
+        <Button onClick={handleSubmit}>Save?</Button>
+      </div>
+    </section>
   )
 }

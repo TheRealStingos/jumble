@@ -35,7 +35,7 @@ export default async function SettingsPage({
   }
 
   return (
-    <div>
+    <div className="flex flex-1">
       <ProfileSettings
         username={data.username}
         bio={data.bio}

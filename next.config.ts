@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "images.igdb.com",
       },
+      {
+        hostname: "ypxbjlmqgaznjimmawxp.supabase.co",
+      },
     ],
   },
 }
