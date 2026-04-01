@@ -3,7 +3,6 @@
 import { LoggedMedia } from "@/types/media"
 import getBadgeColor from "@/utils/mediaBadge"
 import Image from "next/image"
-import Link from "next/link"
 import { Badge } from "../ui/badge"
 import { Rating } from "react-simple-star-rating"
 import { TableCell, TableRow } from "@/components/ui/table"
