@@ -20,7 +20,7 @@ export interface GameResult extends MediaResult {
 
 // type for internal data coming from Supabase
 export interface LoggedMedia {
-  media_id: string
+  media_id?: string
   id: string
   title: string
   cover: string | null

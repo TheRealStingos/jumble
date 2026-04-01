@@ -87,6 +87,7 @@ export default function LogMedia({ result }: LogMediaProps) {
               onClick={handleRating}
               initialValue={userRating}
               allowFraction
+              SVGstyle={{ display: "inline" }}
             />
             <p>{userRating}</p>
           </div>
