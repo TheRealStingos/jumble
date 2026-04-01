@@ -28,4 +28,6 @@ export interface LoggedMedia {
   type: MediaType
   user_rating: number | null
   logged_at: string
+  completed_at: string
+  user_review: string
 }

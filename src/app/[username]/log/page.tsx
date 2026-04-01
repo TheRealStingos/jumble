@@ -1,5 +1,12 @@
 import { createClient } from "@/utils/supabase/server"
-import Link from "next/link"
+import LogEntry from "@/components/log/LogEntry"
+import {
+  Table,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableBody,
+} from "@/components/ui/table"
 
 export default async function MediaLog({
   params,
@@ -29,33 +36,30 @@ export default async function MediaLog({
       "title, cover, user_rating, user_review, completed_at, media_id, type, release_date, logged_at, id"
     )
     .eq("user_id", userId)
+    .order("completed_at", { ascending: false })
 
   if (logError) {
     console.log(logError)
     return
   }
   return (
-    <div>
-      {log.map((entry) => (
-        <div key={entry.id}>
-          <div>
-            <img src={entry.cover} />{" "}
-            {/* TODO: Change to Image during styling */}
-          </div>
-          <p>{entry.type}</p>
-          <Link href={`/media/${entry.type}/${entry.media_id}`}>
-            <p>{entry.title}</p>
-          </Link>
-          <p>
-            {entry.release_date
-              ? new Date(entry.release_date).getFullYear()
-              : "Unknown"}
-          </p>
-          <p>{entry.user_rating}</p>
-          <p>{entry.user_review}</p>
-          <p>{entry.logged_at}</p>
-        </div>
-      ))}
-    </div>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Date</TableHead>
+          <TableHead>Type</TableHead>
+          <TableHead>Cover</TableHead>
+          <TableHead>Title</TableHead>
+          <TableHead>Released</TableHead>
+          <TableHead>Rating</TableHead>
+          <TableHead>Review</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {log.map((entry) => (
+          <LogEntry key={entry.id} entry={entry} username={username} />
+        ))}
+      </TableBody>
+    </Table>
   )
 }

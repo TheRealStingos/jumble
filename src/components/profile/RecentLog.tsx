@@ -3,6 +3,7 @@ import { LoggedMedia } from "@/types/media"
 import { Badge } from "../ui/badge"
 import Image from "next/image"
 import { Rating } from "react-simple-star-rating"
+import getBadgeColor from "@/utils/mediaBadge"
 
 export default function RecentLog({ entries }: { entries: LoggedMedia[] }) {
   return (
@@ -12,7 +13,7 @@ export default function RecentLog({ entries }: { entries: LoggedMedia[] }) {
           key={entry.id}
           className="bg-card flex w-48 flex-col items-center overflow-hidden rounded-lg p-4"
         >
-          <Badge>
+          <Badge className={getBadgeColor(entry.type)}>
             {entry.type.charAt(0).toUpperCase() + entry.type.slice(1)}
           </Badge>
           <h2 className="w-full truncate text-center font-semibold">
