@@ -37,14 +37,16 @@ export default async function ProfilePage({
     .limit(5)
 
   return (
-    <section className="flex flex-col border border-red-200 h-full w-full flex-1">
-      <div className="flex border border-green-600">
-        <Avatar>
+    <section className="mt-12 flex h-full w-full flex-1 flex-col items-center">
+      <div className="flex">
+        <Avatar className="h-60 w-fit">
           <AvatarImage src={data.avatar} />
         </Avatar>
-        <div className="flex flex-col">
-          <h1>{data.username}</h1>
-          <p>{data.bio}</p>
+        <div className="flex flex-col justify-around">
+          <h1 className="text-primary text-2xl font-semibold text-shadow-md">
+            {data.username}
+          </h1>
+          <p className="bg-card max-w-100 rounded-lg p-4">{data.bio}</p>
         </div>
         {isOwner && (
           <Button asChild>
@@ -54,14 +56,16 @@ export default async function ProfilePage({
       </div>
 
       <div>
-        <div>
-          <h1>Recent Activity</h1>
+        <div className="mt-16 flex flex-col items-center">
+          <h1 className="text-secondary mb-4 text-xl font-bold text-shadow-md">
+            Recent Activity
+          </h1>
+          <div className="flex justify-around">
+            <RecentLog entries={recentLog ?? []} />
+          </div>
           <Button asChild>
             <Link href={`/${username}/log`}>View Log</Link>
           </Button>
-          <div>
-            <RecentLog entries={recentLog ?? []} />
-          </div>
         </div>
       </div>
     </section>

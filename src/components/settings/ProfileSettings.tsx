@@ -5,6 +5,7 @@ import imageCompression from "browser-image-compression"
 import Image from "next/image"
 import { useState } from "react"
 import { Button } from "../ui/button"
+import { useRouter } from "next/navigation"
 
 export default function ProfileSettings({
   username,
@@ -15,10 +16,10 @@ export default function ProfileSettings({
   bio: string | null
   avatar: string | null
 }) {
-  const oldBio = bio
-  const [newBio, setNewBio] = useState("")
+  const [oldBio, setoldBio] = useState(bio)
   const [newAvatar, setNewAvatar] = useState(avatar)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const router = useRouter()
 
   function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -46,7 +47,7 @@ export default function ProfileSettings({
 
     const { error: bioError } = await supabase
       .from("profiles")
-      .update({ bio: newBio })
+      .update({ bio: oldBio })
       .eq("id", userId)
 
     if (bioError) {
@@ -79,30 +80,35 @@ export default function ProfileSettings({
 
       setNewAvatar(publicUrl)
     }
+    router.push(`/${username}`)
+    router.refresh()
   }
 
   return (
-    <section className="flex items-center justify-center gap-12 flex-1 h-full w-full">
-      <div className="flex bg-card rounded-lg">
-        <form className="flex flex-col p-3">
-          <label htmlFor="new-bio">Bio:</label>
-          <textarea
-            name="new-bio"
-            id="new-bio"
-            placeholder={oldBio ?? "Tell us about yourself!"}
-            value={newBio ?? ""}
-            onChange={(e) => setNewBio(e.target.value)}
-            className="min-h-35"
-          />
-        </form>
-      </div>
+    <section className="flex h-full w-full flex-1 flex-col items-center justify-center gap-12">
+      <div className="flex gap-12">
+        <div className="bg-card flex rounded-lg">
+          <form className="flex flex-col p-3">
+            <label htmlFor="new-bio">Bio:</label>
+            <textarea
+              name="new-bio"
+              id="new-bio"
+              placeholder={"Tell us about yourself!"}
+              value={oldBio ?? ""}
+              onChange={(e) => setoldBio(e.target.value)}
+              className="min-h-60 min-w-125"
+            />
+          </form>
+        </div>
 
-      <div className="rounded-lg bg-card flex flex-col p-6">
-        <Image src={newAvatar ?? ""} alt="Avatar" width={300} height={300} />
-
-        <input type="file" accept="image/*" onChange={handleAvatarChange} />
-        <Button onClick={handleSubmit}>Save?</Button>
+        <div className="bg-card flex flex-col items-center justify-center gap-4 rounded-lg p-6">
+          <Image src={newAvatar ?? ""} alt="Avatar" width={300} height={300} />
+          <Button asChild className="text-center">
+            <input type="file" accept="image/*" onChange={handleAvatarChange} />
+          </Button>
+        </div>
       </div>
+      <Button onClick={handleSubmit}>Save?</Button>
     </section>
   )
 }
