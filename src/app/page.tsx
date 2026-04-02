@@ -55,12 +55,14 @@ export default function Home() {
       </div>
 
       <div className="bg-primary flex flex-1 items-center justify-around">
-        <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-col gap-4">
           <h1 className="font-bol text-3xl text-white">Start your log today</h1>
           <h2 className="texl-lg text-white">
             Free to use, more features coming soon
           </h2>
-          <Button className="bg-secondary">Create Your Account</Button>
+          <Button className="bg-secondary" asChild>
+            <Link href={"/signup"}>Create Your Account</Link>
+          </Button>
         </div>
       </div>
     </section>
