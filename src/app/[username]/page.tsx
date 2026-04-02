@@ -31,7 +31,9 @@ export default async function ProfilePage({
 
   const { data: recentLog } = await supabase
     .from("media_log")
-    .select("id, title, cover, type, user_rating, logged_at, release_date")
+    .select(
+      "id, title, cover, type, user_rating, logged_at, release_date, user_review, completed_at"
+    )
     .eq("user_id", data.id)
     .order("logged_at", { ascending: false })
     .limit(5)

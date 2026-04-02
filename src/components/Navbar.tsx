@@ -38,13 +38,15 @@ export default function Navbar({
   }
 
   return (
-    <nav className="flex justify-between items-center bg-card px-8">
-      <Image
-        src={"/jumble_logo_puzzle.svg"}
-        alt="jumble logo"
-        width={300}
-        height={200}
-      />
+    <nav className="bg-card flex items-center justify-around border-b-2 px-8">
+      <Link href={"/"} className="flex">
+        <h1 className="text-primary text-4xl font-bold text-shadow-black text-shadow-xs">
+          J
+        </h1>
+        <h1 className="text-secondary text-4xl font-bold text-shadow-black text-shadow-xs">
+          umble
+        </h1>
+      </Link>
       <div className="flex">
         <MediaSearch />
         {isLoggedIn ? (
@@ -75,7 +77,7 @@ export default function Navbar({
         ) : (
           <Link
             href="/signin"
-            className="bg-primary flex items-center rounded-lg p-3 ml-6 hover:bg-primary/90 active:scale-95 text-primary-foreground shadow-md font-semibold"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground ml-6 flex items-center rounded-lg p-3 font-semibold shadow-md active:scale-95"
           >
             Sign In
           </Link>
