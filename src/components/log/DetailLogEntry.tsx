@@ -22,6 +22,13 @@ export default function DetailLogEntry({ entry }: { entry: LoggedMedia }) {
           />
         </div>
         <div>
+          <p className="text-md text-accent mb-2 text-shadow-sm">
+            {new Date(entry.completed_at).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </p>
           <div className="flex gap-6">
             <h2 className="text-primary text-xl font-semibold text-shadow-md">
               {entry.title}

@@ -11,28 +11,47 @@ export default function GameDetail({ result }: GameDetailProps) {
 
   return (
     <MediaDetailLayout result={result}>
-      <div>
-        <p>Developers:</p>
-        {devs.map((c) => (
-          <p key={c.company.name}>{c.company.name}</p>
-        ))}
-      </div>
+      <section className="">
+        <div className="flex gap-20">
+          <div className="flex flex-col">
+            <p className="text-primary font-semibold">Developers:</p>
+            {devs.map((c) => (
+              <p className="text-secondary font-semibold" key={c.company.name}>
+                {c.company.name}
+              </p>
+            ))}
+          </div>
 
-      <div>
-        <p>Publishers:</p>
-        {pubs.map((c) => (
-          <p key={c.company.name}>{c.company.name}</p>
-        ))}
-      </div>
+          <div className="flex flex-col">
+            <p className="text-primary font-semibold">Publishers:</p>
+            {pubs.map((c) => (
+              <p className="text-secondary font-semibold" key={c.company.name}>
+                {c.company.name}
+              </p>
+            ))}
+          </div>
+          <div>
+            <p className="text-primary font-semibold">Genre(s):</p>
+            {result.genres.map((genre) => (
+              <p className="text-secondary font-semibold" key={genre.name}>
+                {genre.name}
+              </p>
+            ))}
+          </div>
+        </div>
 
-      {result.genres.map((genre) => (
-        <p key={genre.name}>{genre.name}</p>
-      ))}
-
-      {result.platforms.map((platform) => (
-        <p key={platform.name}>{platform.name}</p>
-      ))}
-      <p>{result.summary}</p>
+        <div>
+          <p className="text-primary font-semibold">Platforms:</p>
+          <div className="grid grid-cols-2">
+            {result.platforms.map((platform) => (
+              <p className="text-secondary font-semibold" key={platform.name}>
+                {platform.name}
+              </p>
+            ))}
+          </div>
+        </div>
+        <p className="mt-6 font-semibold">{result.summary}</p>
+      </section>
     </MediaDetailLayout>
   )
 }
