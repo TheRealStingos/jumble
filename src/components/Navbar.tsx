@@ -13,6 +13,7 @@ import {
 } from "./ui/dropdown-menu"
 import MediaSearch from "./search/MediaSearch"
 import Image from "next/image"
+import { Button } from "./ui/button"
 
 export default function Navbar({
   isLoggedIn,
@@ -75,12 +76,9 @@ export default function Navbar({
             </DropdownMenu>
           </div>
         ) : (
-          <Link
-            href="/signin"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground ml-6 flex items-center rounded-lg p-3 font-semibold shadow-md active:scale-95"
-          >
-            Sign In
-          </Link>
+          <Button asChild className="mt-3 ml-3">
+            <Link href="/signin">Sign In</Link>
+          </Button>
         )}
       </div>
     </nav>
