@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    remotePatterns: [
+      {
+        hostname: "images.igdb.com",
+      },
+      {
+        hostname: "ypxbjlmqgaznjimmawxp.supabase.co",
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig
