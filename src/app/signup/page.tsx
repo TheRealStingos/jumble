@@ -9,6 +9,8 @@ export default function SignUpForm() {
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const [profileError, setProfileError] = useState<string | null>(null)
   const router = useRouter()
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
@@ -20,8 +22,17 @@ export default function SignUpForm() {
       password,
     })
 
+    if (!email || !password || !username) {
+      setError("Please fill in all fields")
+      return
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters")
+      return
+    }
+
     if (error) {
-      console.log(error)
+      setError(error.message)
       return
     }
     if (!data.user) {
@@ -32,7 +43,7 @@ export default function SignUpForm() {
       username,
     })
     if (profileError) {
-      console.log(profileError)
+      setProfileError(profileError.message)
     } else {
       // TODO: show error to user instead of console.log
       console.log(data)
@@ -42,8 +53,8 @@ export default function SignUpForm() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center flex-1">
-      <form className="flex flex-col bg-card rounded-lg p-3">
+    <section className="flex flex-1 flex-col items-center justify-center">
+      <form className="bg-card flex flex-col rounded-lg p-3">
         <label htmlFor="signup-username">Username:</label>
 
         <input
@@ -74,7 +85,9 @@ export default function SignUpForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center">
+          {error && <p className="text-primary">{error}</p>}
+          {profileError && <p className="text-primary">{profileError}</p>}
           <Button onClick={handleSubmit}>Sign Up</Button>
         </div>
       </form>

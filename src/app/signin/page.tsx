@@ -9,6 +9,7 @@ import { useState } from "react"
 export default function SignInForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
@@ -22,9 +23,9 @@ export default function SignInForm() {
     })
 
     if (error) {
-      console.log(error)
+      setError("Incorrect Email or Password")
+      return
     } else {
-      // TODO: show error to user instead of console.log
       console.log(data)
       router.push("/")
       router.refresh()
@@ -32,8 +33,8 @@ export default function SignInForm() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center flex-1">
-      <form className="flex flex-col bg-card rounded-lg p-3">
+    <section className="flex flex-1 flex-col items-center justify-center">
+      <form className="bg-card flex flex-col rounded-lg p-3">
         <label htmlFor="signin-email">E-Mail:</label>
         <input
           type="email"
@@ -53,7 +54,8 @@ export default function SignInForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="*****"
         />
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center">
+          {error && <p className="text-primary">{error}</p>}
           <Button onClick={handleSubmit}>Sign in</Button>
         </div>
       </form>
@@ -61,7 +63,7 @@ export default function SignInForm() {
         Don't have an account?{" "}
         <Link
           href="/signup"
-          className="text-primary font-semibold hover:text-accent"
+          className="text-primary hover:text-accent font-semibold"
         >
           Sign up
         </Link>
