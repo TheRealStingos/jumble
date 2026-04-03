@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  nextjs:
+    build: .
+    pull_policy: build
+    container_name: jumble
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
