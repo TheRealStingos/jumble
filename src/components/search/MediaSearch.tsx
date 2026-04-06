@@ -47,9 +47,9 @@ export default function MediaSearch() {
   }
 
   return (
-    <div className="mt-2 relative">
+    <div className="relative mt-2">
       <input
-        className="bg-background focus:bg-muted px-3 py-2 rounded-xl"
+        className="bg-background focus:bg-muted rounded-xl px-3 py-2"
         type="text"
         id="search"
         name="search"
@@ -61,7 +61,7 @@ export default function MediaSearch() {
       {loading && <p>Loading...</p>}
       {query && results.length === 0 && !loading && <p>No results found</p>}
       {(loading || error || results.length > 0) && (
-        <div className="absolute z-50 top-8 w-full bg-card border border-border shadow-md rounded-lg">
+        <div className="bg-card border-border absolute top-8 z-50 w-full rounded-lg border p-2 shadow-md">
           {loading && <p>Loading...</p>}
           {error && <p>{error}</p>}
           {results.map((result) => (
