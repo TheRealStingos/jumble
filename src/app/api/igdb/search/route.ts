@@ -19,10 +19,12 @@ export async function GET(request: Request) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "text/plain",
       },
-      body: `search "${query}"; fields name, cover.image_id, first_release_date; where version_parent = null;`,
+      body: `search "${query}"; fields name, cover.image_id, first_release_date; where game_type=0 & version_parent=null; limit 5;`,
     })
 
     if (!igdbResponse.ok) {
+      const body = await igdbResponse.text()
+      console.error("IGDB error:", igdbResponse.status, body)
       throw new Error(`Response Status: ${igdbResponse.status}`)
     }
 
@@ -39,7 +41,8 @@ export async function GET(request: Request) {
     }))
 
     return Response.json(normalized)
-  } catch {
+  } catch (error) {
+    console.error("IGDB search error:", error)
     return Response.json({ error: "Something went wrong" }, { status: 500 })
   }
 }

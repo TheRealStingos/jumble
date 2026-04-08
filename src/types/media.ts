@@ -18,6 +18,14 @@ export interface GameResult extends MediaResult {
   summary: string | null
 }
 
+export interface MovieResult extends MediaResult {
+  genres: string[]
+  overview: string | null
+  cast: string[]
+  director: string | null
+  runtime: number | null
+}
+
 // type for internal data coming from Supabase
 export interface LoggedMedia {
   media_id?: string

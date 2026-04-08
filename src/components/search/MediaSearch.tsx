@@ -4,6 +4,7 @@ import useDebounce from "@/hooks/useDebounce"
 import type { MediaResult } from "@/types/media"
 import { useEffect, useState } from "react"
 import MediaCard from "./MediaCard"
+import getBadgeColor from "@/utils/mediaBadge"
 
 export default function MediaSearch() {
   const [query, setQuery] = useState("")
@@ -23,14 +24,33 @@ export default function MediaSearch() {
       setError(null)
       setLoading(true)
       try {
-        const apiResponse = await fetch(
-          `/api/igdb/search?query=${debouncedQuery}`
-        )
-        if (!apiResponse.ok) {
-          throw new Error(`Response Status: ${apiResponse.status}`)
-        }
-        const data = await apiResponse.json()
-        setResults(data)
+        const [igdbResponse, tmdbResponse] = await Promise.all([
+          fetch(`/api/igdb/search?query=${debouncedQuery}`),
+          fetch(`/api/tmdb/search?query=${debouncedQuery}`),
+        ])
+
+        if (!igdbResponse.ok) throw new Error("IGDB search failed")
+        if (!tmdbResponse.ok) throw new Error("TMDB search failed")
+
+        const [igdbData, tmdbData] = await Promise.all([
+          igdbResponse.json(),
+          tmdbResponse.json(),
+        ])
+        const combined = [...igdbData, ...tmdbData]
+        combined.sort((a, b) => {
+          const q = debouncedQuery.toLowerCase()
+          const aStarts = a.title.toLowerCase().startsWith(q) ? 0 : 1
+          const bStarts = b.title.toLowerCase().startsWith(q) ? 0 : 1
+          return aStarts - bStarts
+        })
+
+        combined.sort((a, b) => {
+          const q = debouncedQuery.toLowerCase()
+          const aExact = a.title.toLowerCase() === q ? 0 : 1
+          const bExact = b.title.toLowerCase() === q ? 0 : 1
+          return aExact - bExact
+        })
+        setResults(combined)
       } catch {
         setError("Sorry, something went wrong")
       } finally {

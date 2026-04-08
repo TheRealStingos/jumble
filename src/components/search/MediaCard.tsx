@@ -2,6 +2,7 @@ import type { MediaResult } from "@/types/media"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
+import getBadgeColor from "@/utils/mediaBadge"
 
 interface MediaCardProps {
   result: MediaResult
@@ -17,7 +18,7 @@ export default function MediaCard({ result, onSelect }: MediaCardProps) {
         onClick={onSelect}
         className="flex flex-col items-center"
       >
-        <h3 className="text-lg font-semibold text-center truncate w-full px-2">
+        <h3 className="w-full truncate px-2 text-center text-lg font-semibold">
           {result.title}
         </h3>
         {result.coverUrl && (
@@ -28,7 +29,10 @@ export default function MediaCard({ result, onSelect }: MediaCardProps) {
             height={120}
           />
         )}
-        <Badge variant="default" className="my-1">
+        <Badge
+          variant="default"
+          className={`${getBadgeColor(result.type)} my-1`}
+        >
           {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
         </Badge>
         <p className="font-semibold">{releaseYear}</p>
