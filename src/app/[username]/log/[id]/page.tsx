@@ -4,9 +4,10 @@ import DetailLogEntry from "@/components/log/DetailLogEntry"
 export default async function FullEntry({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; username: string }>
 }) {
   const { id } = await params
+  const { username } = await params
   const supabase = await createClient()
   const { data: entry } = await supabase
     .from("media_log")
@@ -19,5 +20,5 @@ export default async function FullEntry({
   } = await supabase.auth.getUser()
   const isOwner = user?.id === entry?.user_id
 
-  return <DetailLogEntry entry={entry} isOwner={isOwner} />
+  return <DetailLogEntry entry={entry} isOwner={isOwner} username={username} />
 }

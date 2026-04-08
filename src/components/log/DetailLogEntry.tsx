@@ -12,9 +12,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
@@ -23,16 +20,18 @@ import { Button } from "@/components/ui/button"
 export default function DetailLogEntry({
   entry,
   isOwner,
+  username,
 }: {
   entry: LoggedMedia
   isOwner: boolean
+  username: string
 }) {
   const supabase = createClient()
   const router = useRouter()
 
   async function handleDelete() {
     await supabase.from("media_log").delete().eq("id", entry.id)
-    router.push("/")
+    router.push(`/${username}/log`)
   }
 
   return (

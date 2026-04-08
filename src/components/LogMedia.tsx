@@ -34,6 +34,17 @@ export default function LogMedia({ result }: LogMediaProps) {
     if (!user) {
       throw new Error("You must be signed in")
     }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("id", user.id)
+      .single()
+
+    if (!profile) {
+      throw new Error("Profile fetch failed")
+    }
+
     const { error } = await supabase.from("media_log").insert({
       user_id: user.id,
       media_id: result.id.toString(),
@@ -50,7 +61,7 @@ export default function LogMedia({ result }: LogMediaProps) {
       setErrorMessage("something went wrong, please try again")
       return
     }
-    router.push("/")
+    router.push(`/${profile.username}/log`)
   }
 
   return (
