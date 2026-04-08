@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
 import MediaSearch from "./search/MediaSearch"
-import Image from "next/image"
 import { Button } from "./ui/button"
 
 export default function Navbar({

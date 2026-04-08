@@ -14,5 +14,10 @@ export default async function FullEntry({
     .eq("id", id)
     .single()
 
-  return <DetailLogEntry entry={entry} />
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const isOwner = user?.id === entry?.user_id
+
+  return <DetailLogEntry entry={entry} isOwner={isOwner} />
 }

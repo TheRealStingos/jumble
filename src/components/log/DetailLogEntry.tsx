@@ -5,8 +5,36 @@ import getBadgeColor from "@/utils/mediaBadge"
 import { Badge } from "@/components/ui/badge"
 import { Rating } from "react-simple-star-rating"
 import { LoggedMedia } from "@/types/media"
+import { createClient } from "@/utils/supabase/client"
+import { useRouter } from "next/navigation"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 
-export default function DetailLogEntry({ entry }: { entry: LoggedMedia }) {
+export default function DetailLogEntry({
+  entry,
+  isOwner,
+}: {
+  entry: LoggedMedia
+  isOwner: boolean
+}) {
+  const supabase = createClient()
+  const router = useRouter()
+
+  async function handleDelete() {
+    await supabase.from("media_log").delete().eq("id", entry.id)
+    router.push("/")
+  }
+
   return (
     <section className="mt-20 flex h-fit w-screen justify-center">
       <div className="bg-card flex max-w-300 gap-20 rounded-lg p-4">
@@ -22,13 +50,33 @@ export default function DetailLogEntry({ entry }: { entry: LoggedMedia }) {
           />
         </div>
         <div>
-          <p className="text-md text-accent mb-2 text-shadow-sm">
-            {new Date(entry.completed_at).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </p>
+          <div className="m-2 flex justify-between">
+            <p className="text-md text-accent mb-2 text-shadow-sm">
+              {new Date(entry.completed_at).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </p>
+            {isOwner && (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button>Delete</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="flex flex-col text-center">
+                  <AlertDialogTitle>
+                    Are you sure you want to delete this entry?
+                  </AlertDialogTitle>
+                  <div className="flex justify-around">
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleDelete}>
+                      Confirm
+                    </AlertDialogAction>
+                  </div>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
+          </div>
           <div className="flex gap-6">
             <h2 className="text-primary text-xl font-semibold text-shadow-md">
               {entry.title}
