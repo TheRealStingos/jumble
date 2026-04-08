@@ -3,14 +3,15 @@ import MediaDetailLayout from "./MediaDetailLayout"
 
 interface GameDetailProps {
   result: GameResult
+  isLoggedIn: boolean
 }
 
-export default function GameDetail({ result }: GameDetailProps) {
+export default function GameDetail({ result, isLoggedIn }: GameDetailProps) {
   const devs = result.involved_companies.filter((c) => c.developer)
   const pubs = result.involved_companies.filter((c) => c.publisher)
 
   return (
-    <MediaDetailLayout result={result}>
+    <MediaDetailLayout result={result} isLoggedIn={isLoggedIn}>
       <section className="">
         <div className="flex gap-20">
           <div className="flex flex-col">

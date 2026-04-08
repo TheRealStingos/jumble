@@ -3,11 +3,12 @@ import MediaDetailLayout from "./MediaDetailLayout"
 
 interface MovieDetailProps {
   result: MovieResult
+  isLoggedIn: boolean
 }
 
-export default function MovieDetail({ result }: MovieDetailProps) {
+export default function MovieDetail({ result, isLoggedIn }: MovieDetailProps) {
   return (
-    <MediaDetailLayout result={result}>
+    <MediaDetailLayout result={result} isLoggedIn={isLoggedIn}>
       <section className="">
         <div className="flex justify-between">
           <div>

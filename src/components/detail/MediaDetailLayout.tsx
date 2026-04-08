@@ -15,11 +15,13 @@ import {
 interface MediaDetailLayoutProps {
   result: MediaResult
   children: React.ReactNode
+  isLoggedIn: boolean
 }
 
 export default function MediaDetailLayout({
   result,
   children,
+  isLoggedIn,
 }: MediaDetailLayoutProps) {
   return (
     <div className="m-8 flex w-screen flex-col items-center">
@@ -58,19 +60,21 @@ export default function MediaDetailLayout({
           </div>
           <div className="flex max-w-150 flex-col">
             {children}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button>Log</Button>
-              </DialogTrigger>
-              <DialogContent className="min-h-100 min-w-lg">
-                <DialogHeader>
-                  <DialogTitle className="text-primary text-center font-semibold">
-                    Media Entry Log
-                  </DialogTitle>
-                </DialogHeader>
-                <LogMedia result={result} />
-              </DialogContent>
-            </Dialog>
+            {isLoggedIn && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button>Log</Button>
+                </DialogTrigger>
+                <DialogContent className="min-h-100 min-w-lg">
+                  <DialogHeader>
+                    <DialogTitle className="text-primary text-center font-semibold">
+                      Media Entry Log
+                    </DialogTitle>
+                  </DialogHeader>
+                  <LogMedia result={result} />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </div>
