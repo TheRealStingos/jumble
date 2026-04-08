@@ -1,6 +1,5 @@
 import { MediaType } from "@/types/media"
 import { TMDBCastMember, TMDBCrewMember, TMDBGenre } from "./tmdbTypes"
-import { error } from "console"
 
 if (!process.env.TMDB_API_KEY) throw new Error("Missing TMDB_API_KEY")
 
@@ -33,8 +32,8 @@ export default async function fetchMovieById(id: string) {
       runtime: movie.runtime ?? null,
       genres: movie.genres.map((g: TMDBGenre) => g.name),
       director:
-        movie.credits.crew.find((c: TMDBCrewMember) => c.job === "Director") ??
-        null,
+        movie.credits.crew.find((c: TMDBCrewMember) => c.job === "Director")
+          ?.name ?? null,
       overview: movie.overview ?? null,
       cast: movie.credits.cast.slice(0, 3).map((c: TMDBCastMember) => c.name),
       type: "movie" as MediaType,
@@ -43,7 +42,7 @@ export default async function fetchMovieById(id: string) {
 
     return normalized
   } catch {
-    console.error("fetchMovieById error:", error)
+    console.error("fetchMovieById error:", Error)
     throw new Error("Failed Fetch from TMDB")
   }
 }

@@ -23,13 +23,14 @@ export default function RecentLog({ entries }: { entries: LoggedMedia[] }) {
               : null}
             )
           </h2>
-          <Image
-            src={entry.cover ?? ""}
-            alt={`${entry.title}`}
-            width={200}
-            height={200}
-            className="h-auto w-full"
-          />
+          <div className="relative h-[300px] w-[200px]">
+            <Image
+              src={entry.cover ?? ""}
+              alt={`${entry.title}`}
+              fill
+              className="h-auto w-full"
+            />
+          </div>
           <div className="flex flex-row">
             <Rating
               readonly

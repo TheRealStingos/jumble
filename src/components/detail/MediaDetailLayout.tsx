@@ -29,14 +29,16 @@ export default function MediaDetailLayout({
           <Badge className={getBadgeColor(result.type)}>
             {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
           </Badge>
-          {result.coverUrl && (
-            <Image
-              src={result.coverUrl}
-              alt={`${result.title} cover art`}
-              width={300}
-              height={300}
-            />
-          )}
+          <div className="relative h-[300px] w-[200px]">
+            {result.coverUrl && (
+              <Image
+                src={result.coverUrl}
+                alt={`${result.title} cover art`}
+                fill
+                className="object-contain"
+              />
+            )}
+          </div>
         </div>
 
         {/* Right Quadrant */}
