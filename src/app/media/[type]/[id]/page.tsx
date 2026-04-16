@@ -4,6 +4,8 @@ import fetchMovieById from "@/lib/tmdb/fetchMovieById"
 import { notFound } from "next/navigation"
 import MovieDetail from "@/components/detail/MovieDetail"
 import { createClient } from "@/utils/supabase/server"
+import fetchTvById from "@/lib/tmdb/fetchTvById"
+import TvDetail from "@/components/detail/TvDetail"
 
 export default async function Page({
   params,
@@ -26,6 +28,11 @@ export default async function Page({
   if (type === "movie") {
     const data = await fetchMovieById(id)
     return <MovieDetail result={data} isLoggedIn={!!user} />
+  }
+
+  if (type === "tv") {
+    const data = await fetchTvById(id)
+    return <TvDetail result={data} isLoggedIn={!!user} />
   }
 
   return notFound()

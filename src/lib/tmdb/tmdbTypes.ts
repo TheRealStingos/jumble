@@ -5,6 +5,24 @@ export interface TMDBMovie {
   poster_path?: string
 }
 
+export interface TMDBTv {
+  id: number
+  name: string
+  first_air_date: string
+  poster_path?: string
+}
+
+export interface TMDBSeason {
+  season_number: number
+}
+
+export interface TMDBTvDetail extends TMDBTv {
+  created_by: TMDBCastMember[]
+  genres: TMDBGenre[]
+  seasons: number
+  overview: string | null
+}
+
 export interface TMDBGenre {
   id: number
   name: string
@@ -25,7 +43,7 @@ export interface TMDBCredits {
   crew: TMDBCrewMember[]
 }
 
-export interface TMDBDetail extends TMDBMovie {
+export interface TMDBMovieDetail extends TMDBMovie {
   runtime: number | null
   overview: string | null
   director: string | null

@@ -29,7 +29,9 @@ export default function MediaDetailLayout({
         {/* Left Quadrant */}
         <div className="flex flex-col items-center justify-center gap-4">
           <Badge className={getBadgeColor(result.type)}>
-            {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
+            {result.type === "tv"
+              ? "TV"
+              : result.type.charAt(0).toUpperCase() + result.type.slice(1)}
           </Badge>
           <div className="relative h-[300px] w-[200px]">
             {result.coverUrl && (

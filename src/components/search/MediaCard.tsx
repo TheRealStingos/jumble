@@ -33,7 +33,9 @@ export default function MediaCard({ result, onSelect }: MediaCardProps) {
           variant="default"
           className={`${getBadgeColor(result.type)} my-1`}
         >
-          {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
+          {result.type === "tv"
+            ? "TV"
+            : result.type.charAt(0).toUpperCase() + result.type.slice(1)}
         </Badge>
         <p className="font-semibold">{releaseYear}</p>
       </Link>

@@ -24,19 +24,23 @@ export default function MediaSearch() {
       setError(null)
       setLoading(true)
       try {
-        const [igdbResponse, tmdbResponse] = await Promise.all([
-          fetch(`/api/igdb/search?query=${debouncedQuery}`),
-          fetch(`/api/tmdb/search?query=${debouncedQuery}`),
-        ])
+        const [igdbResponse, tmdbMovieResponse, tmdbTvResponse] =
+          await Promise.all([
+            fetch(`/api/igdb/search?query=${debouncedQuery}`),
+            fetch(`/api/tmdb/search/movie?query=${debouncedQuery}`),
+            fetch(`/api/tmdb/search/tv?query=${debouncedQuery}`),
+          ])
 
         if (!igdbResponse.ok) throw new Error("IGDB search failed")
-        if (!tmdbResponse.ok) throw new Error("TMDB search failed")
+        if (!tmdbMovieResponse.ok) throw new Error("TMDB search failed")
+        if (!tmdbTvResponse.ok) throw new Error("TMDB search failed")
 
-        const [igdbData, tmdbData] = await Promise.all([
+        const [igdbData, tmdbMovieData, tmdbTvData] = await Promise.all([
           igdbResponse.json(),
-          tmdbResponse.json(),
+          tmdbMovieResponse.json(),
+          tmdbTvResponse.json(),
         ])
-        const combined = [...igdbData, ...tmdbData]
+        const combined = [...igdbData, ...tmdbMovieData, ...tmdbTvData]
         combined.sort((a, b) => {
           const q = debouncedQuery.toLowerCase()
           const aStarts = a.title.toLowerCase().startsWith(q) ? 0 : 1

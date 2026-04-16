@@ -26,6 +26,13 @@ export interface MovieResult extends MediaResult {
   runtime: number | null
 }
 
+export interface TvResult extends MediaResult {
+  creator: string | null
+  overview: string | null
+  genres: string[]
+  seasons: number | null
+}
+
 // type for internal data coming from Supabase
 export interface LoggedMedia {
   media_id?: string
