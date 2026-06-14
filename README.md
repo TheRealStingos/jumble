@@ -1,6 +1,5 @@
 # Jumble
 
-<<<<<<< HEAD
 An all-in-one social media logging app. Log, rate, and review your favorite video games, music, movies, television shows, books, comics, and manga.
 
 Still under construction, check back soon.
@@ -42,8 +41,6 @@ For Architecture choices please see architecture.md
 
 ## Tech Stack
 
-# <<<<<<< HEAD
-
 [](https://github.com/TheRealStingos/jumble/blob/main/README.md#tech-stack)
 
 > > > > > > > dev
@@ -59,8 +56,6 @@ For Architecture choices please see architecture.md
 
 - Node.js
 - A Supabase account
-
-<<<<<<< HEAD
 
 ### Installation
 
@@ -114,4 +109,7 @@ Found in your Twitch Developers Console. Register Application → New Secret →
 TMDB_API_KEY=
 Found on your TMDB api settings page. Profile → Settings → API → API Read Access Token
 
-> > > > > > > dev
+Motivation
+Quick Start
+Usage
+Contributing
