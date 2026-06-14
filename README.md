@@ -32,7 +32,6 @@ For Architecture choices please see architecture.md
 [](https://github.com/TheRealStingos/jumble/blob/main/README.md#planned)
 
 - Other media types (Movies, Music, Television, Books)
-  > > > > > > > dev
 - Friends and friend activity
 - Curated and collaborative lists
 - Upcoming release tracking
@@ -43,7 +42,6 @@ For Architecture choices please see architecture.md
 
 [](https://github.com/TheRealStingos/jumble/blob/main/README.md#tech-stack)
 
-> > > > > > > dev
 
 - Next.js (TypeScript)
 - Supabase (PostgreSQL + Auth)
@@ -108,8 +106,3 @@ Found in your Twitch Developers Console. Register Application → New Secret →
 
 TMDB_API_KEY=
 Found on your TMDB api settings page. Profile → Settings → API → API Read Access Token
-
-Motivation
-Quick Start
-Usage
-Contributing
