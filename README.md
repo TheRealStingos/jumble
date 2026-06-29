@@ -1,18 +1,4 @@
 # Jumble
-
-An all-in-one social media logging app. Log, rate, and review your favorite video games, music, movies, television shows, books, comics, and manga.
-
-Still under construction, check back soon.
-
-## Features
-
-### Planned
-
-- User Accounts
-- # Log, rate, and review media (movies, games, TV, music, books)
-
-[](https://github.com/TheRealStingos/jumble/blob/main/README.md#jumble)
-
 An all-in-one social media logging app. Log, rate, and review your favorite video games, music, movies, television shows, books, comics, and manga.
 
 Still under construction, check back soon.
@@ -24,14 +10,13 @@ For Architecture choices please see architecture.md
 [](https://github.com/TheRealStingos/jumble/blob/main/README.md#features)
 
 - User Account
-- Search for games
-- Log, rate, and review video games
+- Search for meida
+- Log, rate, and review video games, movies, and television
 
 ### Planned
 
 [](https://github.com/TheRealStingos/jumble/blob/main/README.md#planned)
 
-- Other media types (Movies, Music, Television, Books)
 - Friends and friend activity
 - Curated and collaborative lists
 - Upcoming release tracking
@@ -94,7 +79,7 @@ Found in your Supabase dashboard under Project Settings → API
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 Found in your Supabase dashboard under Project Settings → API → publishable key
 
-SUPABASE*SECRET_KEY=
+SUPABASE_SECRET_KEY=
 Found in your Supabase dashboard under Project Settings → API → secret key
 Never expose this publicly or prefix with NEXT_PUBLIC*
 
